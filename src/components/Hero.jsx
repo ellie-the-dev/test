@@ -1,14 +1,28 @@
 import heroImg from '../assets/logimg (2).png'
 
 const Hero = ({inputValue, setInputValue, noteList, setNoteList, setToggle}) => {
+     
     const handleInput = (e) =>{
+          
         setInputValue(e.target.value)
     }
 
     const handleClick = () =>{
-        if (inputValue === null || inputValue.trim()=== "")return
-        setNoteList([...noteList,inputValue])
-        setToggle(false)
+        if(inputValue === null || inputValue.trim() === "")return
+
+     const today = new Date().toLocaleDateString("en-GB", {
+         hour: "numeric",
+        minute: "numeric",
+        hour12: true
+     })
+
+     const newNote = {
+        id : Date.now(),
+        text: inputValue,
+        date: today
+     }
+        
+        setNoteList([...noteList, newNote])
         setInputValue("")
     }
     return ( 
@@ -27,7 +41,7 @@ const Hero = ({inputValue, setInputValue, noteList, setNoteList, setToggle}) => 
                     </div>
                     <div className="hero-input">
                         <input type="text" placeholder="Something memorable..." onChange={handleInput} value={inputValue}/>
-                        <button onClick={handleClick}>Add Note</button>
+                        <button onClick={handleClick}><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
               </div>

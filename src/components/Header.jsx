@@ -20,11 +20,12 @@ const Header = ({toggle, setToggle}) => {
                 </div>
             </div>
             <div className="right">
-                <div className="add-btn">
+                {/* <div className="add-btn">
                     <button onClick={handleToggle}>
                     <i class="fa-solid fa-plus"></i>Add Task
                     </button>
-                </div>
+                </div> */}
+                <div className="null"></div>
                 <div className="misc">
                 <div className="img-box">
                     <div className="img-profile">

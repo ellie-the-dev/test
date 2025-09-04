@@ -94,7 +94,7 @@ body{
 }
 
 .sidebar-logout{
-  background: linear-gradient(red,crimson);
+  background: linear-gradient(rgb(220, 20, 20),rgb(226, 70, 102));
   border-radius: 20px;
   padding: .5rem 1rem;
   color: #000;
@@ -150,7 +150,7 @@ body{
   
 }
 
-.search,.hero input{
+.search,.hero-input{
   display: flex;
   align-items: center;
   width: 95%;
@@ -164,6 +164,18 @@ body{
   border: 1px solid rgba(146, 146, 146, 0.3);
     overflow: hidden;
 
+}
+.hero-input input{
+  height: 3rem;
+  width: 90%;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.hero-input{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .search-btn{
@@ -185,7 +197,7 @@ body{
   padding: .5rem;
 }
 
-.search-btn i{
+.search-btn i,#pen{
     background: linear-gradient(to bottom,lightblue,rgb(2, 2, 83));
     background-clip: text;
     color: transparent;
@@ -201,6 +213,16 @@ button{
   cursor: pointer;
 }
 
+
+.search-box button{
+  background: linear-gradient(to right bottom,lightblue,rgb(2, 2, 83));
+
+}
+
+.add-btn button{
+  background: #000;
+  color: white;
+}
 .right{
   width: 20%;
   flex-direction: row;
@@ -244,13 +266,6 @@ button{
 .task{
   grid-area: task;
 }
-
-.main{
-  grid-area: main;
-  overflow-y: scroll;
-}
-
-
 
 
 .item{
@@ -307,12 +322,132 @@ button{
   content: "";
   width: 15rem;
   height: 15rem;
-  background: linear-gradient(red,crimson);
+  background: linear-gradient(rgb(220, 20, 37),rgb(226, 70, 102));
   border: 1px solid black;
   border-radius: 50%;
   bottom: -7.5rem;
   right: -5rem;
 }
+
+
+/* *****************MAIN*************** */
+
+.main{
+  grid-area: main;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.notes{
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  grid-gap: 1rem;
+}
+
+.note-card{
+  width: 11.5rem;
+  height: 12.5rem;
+    background: rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  transition: .5s ease;
+  border: 1px solid rgba(146, 146, 146, 0.3);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5rem;
+  overflow: hidden;
+}
+
+.note-top{
+  height: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-no{
+  width: 1rem;
+  height: 1rem;
+  padding: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note-btn{
+  display: flex;
+  gap: .25rem;
+}
+
+.note-bottom p{
+  color: #000000bb;
+  font-size: 14px;
+}
+
+#trash,.note-no p{
+  background: linear-gradient(red,rgb(226, 70, 102));
+  background-clip: text;
+  color: transparent;
+
+}
+#trash:hover,
+#pen:hover{
+  background: #000;
+  background-clip: text;
+  color: transparent;
+  cursor: pointer;
+  transition: .5s ease;
+}
+
+.note-body{
+  height: 8rem;
+  display: block;       /* or keep flex if needed */
+  word-wrap: break-word;      /* old name */
+  overflow-wrap: break-word; 
+  word-break: break-all;
+  white-space: normal;  
+  font-size: 15px;
+  padding: .15rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  overflow: hidden; /* optional spacing */
+}
+.note-body > * {
+  flex: 1 1 auto; /* allow shrinking/wrapping */
+  min-width: 150px; /* control wrapping point */
+}
+
+.note-bottom{
+  height: 2rem;
+  width: 100%;
+
+}
+
+.note-bottom p{
+  font-size: 12px;
+}
+
+.note-card:hover,.note-no{
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: .5s ease;
+    border: 1px solid rgba(58, 58, 58, 0.3);
+
+}
+
+
+
 
 
 /* **********POPUP************ */
@@ -348,17 +483,52 @@ button{
 
 }
 
-
-
+ 
 
 /* Mobile layout */
-/* @media (max-width: 768px){
+ @media (max-width: 1320px){
   .container{
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "main"
-      "sidebar"
-      "footer";
+    grid-template-columns: [col-start] 10rem [col-1] 1fr [col-2]1fr [col-3]13.5rem [col-end];
+      }
+ }
+
+  @media (max-width: 1270px){
+    .notes{
+      grid-template-columns: repeat(3,1fr);
+    }
   }
-} */
+
+  @media (max-width: 1058px) {
+    .container{
+       grid-template-areas: 
+        "sidebar header header header"
+        "sidebar profile profile profile"
+        "sidebar main main main"
+        ;
+    }
+
+    .task{
+      display: none;
+    }
+
+    .notes{
+      grid-template-columns: repeat(4,1fr);
+    }
+
+    .hero{
+      width: 95%;
+    }
+    
+  }
+
+    @media (max-width: 1034px) {
+      .notes{
+        grid-template-columns: repeat(3,1fr);
+        }
+    }
+
+    @media (max-width: 845px) {
+      .notes{
+        grid-template-columns: repeat(2,1fr);
+        }
+    }
