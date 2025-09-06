@@ -37,7 +37,7 @@ const Hero = ({inputValue, setInputValue, noteList, setNoteList, setToggle}) => 
                         <h1>Hey <span className="bold">Marie!</span></h1>
                     </div>
                     <div className="hero-body">
-                        <p>Lets note something sppecial today!</p>
+                        <p>Lets note something special today!</p>
                     </div>
                     <div className="hero-input">
                         <input type="text" placeholder="Something memorable..." onChange={handleInput} value={inputValue}/>

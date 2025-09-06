@@ -1,22 +1,32 @@
-const Add = ({inputValue, setInputValue, noteList, setNoteList, setToggle}) => {
+import { useState } from "react"
+const Add = ({taskInput, setTaskInput, taskList, setTaskList,setToggle}) => {
     const handleInput = (e) =>{
-        setInputValue(e.target.value)
+        setTaskInput(e.target.value)
     }
+    const [isdone, setIsdone] = useState(false)
+
 
     const handleClick = () =>{
-        if (inputValue === null || inputValue.trim()=== "")return
-        setNoteList([...noteList,inputValue])
+        // if (taskInput === null || taskInput.trim()=== "")return
+         const taskObj = {
+            id: Date.now(),
+            text: taskInput,
+            // done: isdone
+        }
+
+        setTaskList([...taskList, taskObj])
         setToggle(false)
-        setInputValue("")
+        setTaskInput("")
+        // console.log(taskInput)
     }
     return ( 
-        <div className="popup">
-            <div className="popup-div">
-                {inputValue}
-                <h1>Add New Note</h1>
-                <input type="text" placeholder="Something memorable..." onChange={handleInput} value={inputValue}/>
-                <button onClick={handleClick}>Add Note</button>
+        <div className="add-popup">
+            <div className="hero-input">
+                <input type="text" onChange={handleInput} value={taskInput} placeholder="Ex: Do Homework..."/>
+                <button onClick={handleClick}><i class="fa-solid fa-plus"></i></button>
             </div>
+            
+            
         </div>
      );
 }

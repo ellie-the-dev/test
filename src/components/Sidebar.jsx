@@ -1,4 +1,4 @@
-import logImg from '../assets/logimg (1).png'
+import logImg from '../assets/logimg (3).png'
 const Sidebar = () => {
     return ( 
         <div className="sidebar">
@@ -24,7 +24,7 @@ const Sidebar = () => {
                     <img src={logImg} alt="" />
                 </div>
                 <div className="log-msg">
-                    <h4>You're now logged in!</h4>
+                    <h4>Yay! You're logged in!</h4>
                     <button>Log Out!</button>
                 </div>
             </div>
